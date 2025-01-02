@@ -1,2 +1,7 @@
 .vs
 *.sln
+x64
+Elysium/x64
+build
+*.vcxproj
+*.vcxproj.filters
