@@ -3,5 +3,13 @@
 
 namespace Elysium
 {
+	void WindowsWindow::OnUpdate()
+	{
+
+	}
+
+	void WindowsWindow::SetVSync(bool enabled)
+	{
+	}
 
 }

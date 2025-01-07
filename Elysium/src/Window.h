@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Elysium/Core.h"
 #include "epch.h"
 
 namespace Elysium
@@ -9,16 +10,18 @@ namespace Elysium
 		std::string Title;
 		unsigned int Width;
 		unsigned int Height;
+		bool VSync;
 
 		WindowProps(const std::string& title = "Elysium Engine",
 					unsigned int width = 1280,
-					unsigned int height = 720)
-			: Title(title), Width(width), Height(height)
+					unsigned int height = 720,
+					bool vsync = false)
+			: Title(title), Width(width), Height(height), VSync(vsync)
 		{
 		}
 	};
 
-	class Window
+	class ELYSIUM_API Window
 	{
 	public:
 		virtual ~Window() {}
@@ -31,6 +34,6 @@ namespace Elysium
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
 
-		static Window* CreateWindow(const WindowProps& props = WindowProps()) {}
+		static Window* CreateWindow(const WindowProps& props = WindowProps());
 	};
 }

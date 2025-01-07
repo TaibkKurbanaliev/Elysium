@@ -1,6 +1,8 @@
 .vs
 *.sln
 x64
+bin
+bin-int
 Elysium/x64
 build
 *.vcxproj
