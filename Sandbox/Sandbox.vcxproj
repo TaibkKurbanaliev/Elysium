@@ -44,12 +44,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Elysium\src</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)vendor\sdl\include;$(SolutionDir)Elysium\src</IncludePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)- $(Platform)\$(ProjectName)</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)- $(Platform)\$(ProjectName)</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)Elysium\src</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)vendor\sdl\include;$(SolutionDir)Elysium\src</IncludePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)- $(Platform)\$(ProjectName)</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)- $(Platform)\$(ProjectName)</IntDir>
   </PropertyGroup>
@@ -86,6 +86,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Elysium\Elysium.vcxproj">
       <Project>{b20e8556-2aed-4039-b674-14783c456eb5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\sdl\VisualC\SDL\SDL.vcxproj">
+      <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

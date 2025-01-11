@@ -7,8 +7,3 @@
 #include <functional>
 #include <string>
 #include <numeric>
-
-
-#ifdef ELYSIUM_PLATFORM_WINDOWS
-	#include <Windows.h>
-#endif

@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SDL3/SDL.h"
 #include "Elysium/Core.h"
 #include "epch.h"
 
@@ -24,16 +25,19 @@ namespace Elysium
 	class ELYSIUM_API Window
 	{
 	public:
-		virtual ~Window() {}
+		virtual ~Window();
 
-		virtual void OnUpdate() = 0;
+		virtual void OnUpdate();
 
-		virtual unsigned int GetWidth() const = 0;
-		virtual unsigned int GetHeight() const = 0;
+		virtual unsigned int GetWidth() const;
+		virtual unsigned int GetHeight() const;
 
-		virtual void SetVSync(bool enabled) = 0;
-		virtual bool IsVSync() const = 0;
+		virtual void SetVSync(bool enabled);
+		virtual bool IsVSync() const;
 
 		static Window* CreateWindow(const WindowProps& props = WindowProps());
+	private:
+		Window(const WindowProps& props);
+		SDL_Window* m_Window = nullptr;
 	};
 }
