@@ -11,6 +11,8 @@ namespace Elysium
 
 		void Run();
 	};
+
+	Application* CreateApplication();
 }
 
 

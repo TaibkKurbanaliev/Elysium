@@ -1,4 +1,4 @@
-#include "Elysium/Application.h"
+#include <Elysium.h>
 
 class Sandbox : public Elysium::Application
 {
@@ -10,17 +10,15 @@ private:
 
 };
 
+Elysium::Application* Elysium::CreateApplication()
+{
+	return new Sandbox();
+}
+
 Sandbox::Sandbox()
 {
 }
 
 Sandbox::~Sandbox()
 {
-}
-
-void main() 
-{
-	Sandbox* app = new Sandbox();
-
-	app->Run();
 }
