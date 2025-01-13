@@ -74,13 +74,13 @@
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)- $(Platform)\$(ProjectName)</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)- $(Platform)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)vendor\sdl\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)vendor\sdl\include;$(SolutionDir)vendor\imgui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)- $(Platform)\$(ProjectName)</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)- $(Platform)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)vendor\sdl\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)vendor\sdl\include;$(SolutionDir)vendor\imgui;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
