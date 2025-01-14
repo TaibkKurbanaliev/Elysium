@@ -1,6 +1,6 @@
 #include "Window.h"
 #include "imgui.h"
-#include ""
+#include "../Platform/OpenGL/imgui_impl_opengl3.h"
 
 namespace Elysium
 {
@@ -25,8 +25,7 @@ namespace Elysium
 		//ImGui::StyleColorsLight();
 
 		// Setup Platform/Renderer backends
-		ImGui_ImplSDL3_InitForOpenGL(window, gl_context);
-		ImGui_ImplOpenGL3_Init(glsl_version);
+		ImGui_ImplOpenGL3_Init("410");
 
 	}
 
