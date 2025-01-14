@@ -1,7 +1,7 @@
 #pragma once
 
 #include "SDL3/SDL.h"
-#include "imgui.h"
+
 #include "Elysium/Core.h"
 #include "epch.h"
 
