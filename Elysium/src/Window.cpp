@@ -1,6 +1,4 @@
 #include "Window.h"
-#include "imgui.h"
-#include "../Platform/OpenGL/imgui_impl_opengl3.h"
 
 namespace Elysium
 {
@@ -15,18 +13,6 @@ namespace Elysium
 									props.Width, 
 									props.Height, 
 									SDL_WINDOW_RESIZABLE);
-		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-
-		// Setup Dear ImGui style
-		ImGui::StyleColorsDark();
-		//ImGui::StyleColorsLight();
-
-		// Setup Platform/Renderer backends
-		ImGui_ImplOpenGL3_Init("410");
-
 	}
 
 	Window::~Window()

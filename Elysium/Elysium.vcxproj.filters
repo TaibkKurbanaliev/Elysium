@@ -24,10 +24,13 @@
     <ClCompile Include="src\Window.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elysium\Log.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
     <ClCompile Include="Platform\OpenGL\imgui_impl_opengl3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\Elysium\Log.cpp">
+    <ClCompile Include="Platform\OpenGL\imgui_impl_sdl3.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -50,10 +53,13 @@
     <ClInclude Include="src\Elysium.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elysium\Log.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
     <ClInclude Include="Platform\OpenGL\imgui_impl_opengl3.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elysium\Log.h">
+    <ClInclude Include="Platform\OpenGL\imgui_impl_sdl3.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

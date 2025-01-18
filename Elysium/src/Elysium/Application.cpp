@@ -14,6 +14,7 @@ namespace Elysium
 	{
 		while (true)
 		{
+			m_Window->OnUpdate();
 			;
 		}
 	}

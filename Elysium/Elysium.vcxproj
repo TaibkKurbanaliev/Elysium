@@ -74,13 +74,13 @@
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)- $(Platform)\$(ProjectName)</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)- $(Platform)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\sdl\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\imgui;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\sdl\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\imgui;$(SolutionDir)Elysium;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ExecutablePath>$(ExecutablePath)</ExecutablePath>
     <OutDir>$(SolutionDir)bin\$(Configuration)- $(Platform)\$(ProjectName)</OutDir>
     <IntDir>$(SolutionDir)bin-int\$(Configuration)- $(Platform)\$(ProjectName)</IntDir>
-    <IncludePath>$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\sdl\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\imgui;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)vendor\glad\include;$(SolutionDir)vendor\sdl\include;$(SolutionDir)vendor\spdlog\include;$(SolutionDir)vendor\imgui;$(SolutionDir)Elysium;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -149,8 +149,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Elysium\Log.cpp" />
     <ClCompile Include="Platform\OpenGL\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Platform\OpenGL\imgui_impl_sdl3.cpp" />
+    <ClCompile Include="src\Elysium\Log.cpp" />
     <ClCompile Include="src\Elysium\Application.cpp" />
     <ClCompile Include="src\epch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -161,8 +162,9 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Elysium\Log.h" />
     <ClInclude Include="Platform\OpenGL\imgui_impl_opengl3.h" />
+    <ClInclude Include="Platform\OpenGL\imgui_impl_sdl3.h" />
+    <ClInclude Include="src\Elysium\Log.h" />
     <ClInclude Include="src\Elysium\Application.h" />
     <ClInclude Include="src\Elysium\Core.h" />
     <ClInclude Include="src\Elysium.h" />
@@ -173,6 +175,9 @@
   <ItemGroup>
     <ProjectReference Include="..\vendor\Glad\Glad.vcxproj">
       <Project>{235e472c-aa15-483b-a079-fdef9aeaf63a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\vendor\imgui\Imgui.vcxproj">
+      <Project>{9f8ea3fc-b296-441f-aa7c-95bfac6f3718}</Project>
     </ProjectReference>
     <ProjectReference Include="..\vendor\sdl\VisualC\SDL\SDL.vcxproj">
       <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
