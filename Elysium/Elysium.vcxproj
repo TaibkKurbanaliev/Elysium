@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Elysium\ImGui\GUI.cpp" />
     <ClCompile Include="Platform\OpenGL\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Platform\OpenGL\imgui_impl_sdl3.cpp" />
     <ClCompile Include="src\Elysium\Log.cpp" />
@@ -162,8 +163,10 @@
     <ClCompile Include="src\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Elysium\ImGui\GUI.h" />
     <ClInclude Include="Platform\OpenGL\imgui_impl_opengl3.h" />
     <ClInclude Include="Platform\OpenGL\imgui_impl_sdl3.h" />
+    <ClInclude Include="src\Elysium\ImGui\Widgets\Widget.h" />
     <ClInclude Include="src\Elysium\Log.h" />
     <ClInclude Include="src\Elysium\Application.h" />
     <ClInclude Include="src\Elysium\Core.h" />

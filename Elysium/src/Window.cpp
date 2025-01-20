@@ -53,9 +53,6 @@ namespace Elysium
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplSDL3_NewFrame();
-		ImGui::NewFrame();
 		ImGui::ShowDemoWindow();
 		static float f = 0.0f;
 		static int counter = 0;
@@ -70,10 +67,6 @@ namespace Elysium
 			counter++;
 		ImGui::SameLine();
 		ImGui::Text("counter = %d", counter);
-
-		ImGui::End();
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		SDL_GL_SwapWindow(m_Window);
 	}
