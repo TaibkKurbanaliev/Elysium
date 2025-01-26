@@ -33,14 +33,7 @@ namespace Elysium
 
 		glEnable(GL_DEPTH_TEST);
 		SDL_GLContext gl_context = SDL_GL_CreateContext(m_Window);
-		ImGui::CreateContext();
-		// Setup Dear ImGui style
-		ImGui::StyleColorsDark();
-		//ImGui::StyleColorsLight();
-
-		// Setup Platform/Renderer backends
-		ImGui_ImplSDL3_InitForOpenGL(m_Window, gl_context);
-		ImGui_ImplOpenGL3_Init("#version 410");
+		m_GUI->Init()
 	}
 
 	Window::~Window()

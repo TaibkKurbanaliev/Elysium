@@ -1,4 +1,5 @@
 #include "Application.h"
+#include "Events/InputEvent.h"
 
 namespace Elysium
 {
@@ -12,8 +13,13 @@ namespace Elysium
 
 	void Application::Run()
 	{
-		while (true)
+		bool isRunning = true;
+
+		while (isRunning)
 		{
+			InputEvent::ReadInput();
+			isRunning = !InputEvent::GetQuit();
+
 			m_Window->OnUpdate();
 			;
 		}

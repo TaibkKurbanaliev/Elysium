@@ -3,6 +3,7 @@
 #include "SDL3/SDL.h"
 #include "Elysium/Core.h"
 #include "epch.h"
+#include "Elysium/ImGui/GUI.h"
 
 namespace Elysium
 {	
@@ -39,5 +40,6 @@ namespace Elysium
 	private:
 		Window(const WindowProps& props);
 		SDL_Window* m_Window = nullptr;
+		std::unique_ptr<GUI> m_GUI;
 	};
 }
