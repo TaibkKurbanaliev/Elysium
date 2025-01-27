@@ -87,6 +87,9 @@
     <ProjectReference Include="..\Elysium\Elysium.vcxproj">
       <Project>{b20e8556-2aed-4039-b674-14783c456eb5}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\vendor\imgui\Imgui.vcxproj">
+      <Project>{78f15254-2456-4feb-94d3-f3c17ad0c81c}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\vendor\sdl\VisualC\SDL\SDL.vcxproj">
       <Project>{81ce8daf-ebb2-4761-8e45-b71abcca8c68}</Project>
     </ProjectReference>

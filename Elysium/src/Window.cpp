@@ -1,7 +1,11 @@
 #include "Window.h"
 #include "glad/glad.h"
 #include "imgui.h"
+
+#pragma region OPENGL
 #include "Platform/OpenGL/imgui_impl_opengl3.h"
+#pragma endregion OPENGL
+
 #include "Platform/OpenGL/imgui_impl_sdl3.h"
 
 namespace Elysium
@@ -19,6 +23,7 @@ namespace Elysium
 			SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 		SDL_SetWindowMouseRect(m_Window, NULL);
 
+#pragma region OPENGL
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -32,8 +37,7 @@ namespace Elysium
 		}
 
 		glEnable(GL_DEPTH_TEST);
-		SDL_GLContext gl_context = SDL_GL_CreateContext(m_Window);
-		m_GUI->Init()
+#pragma endregion OPENGL
 	}
 
 	Window::~Window()
@@ -41,25 +45,10 @@ namespace Elysium
 		SDL_DestroyWindow(m_Window);
 	}
 
-	void Window::OnUpdate()
+	void Window::Update()
 	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
-
-		ImGui::ShowDemoWindow();
-		static float f = 0.0f;
-		static int counter = 0;
-
-		ImGui::Begin("Hello, world!");                          
-
-		ImGui::Text("This is some useful text.");              
-
-		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            
-
-		if (ImGui::Button("Button"))                         
-			counter++;
-		ImGui::SameLine();
-		ImGui::Text("counter = %d", counter);
+		/*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(1.0f, 0.0f, 1.0f, 1.0f);*/
 
 		SDL_GL_SwapWindow(m_Window);
 	}

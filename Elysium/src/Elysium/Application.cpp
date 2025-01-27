@@ -5,7 +5,9 @@ namespace Elysium
 {
 	Application::Application()
 	{
-		m_Window = std::make_unique<Window>(*Window::CreateWindow());
+		m_Window.reset(m_Window->CreateWindow());
+		m_GUI = std::make_unique<GUI>();
+		m_GUI->InitGLGui(m_Window->GetWindow());
 	}
 	Application::~Application()
 	{
@@ -18,10 +20,11 @@ namespace Elysium
 		while (isRunning)
 		{
 			InputEvent::ReadInput();
+
 			isRunning = !InputEvent::GetQuit();
 
-			m_Window->OnUpdate();
-			;
+			m_GUI->Update();
+			m_Window->Update();
 		}
 	}
 }

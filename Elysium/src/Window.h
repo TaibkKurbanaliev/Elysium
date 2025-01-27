@@ -28,18 +28,19 @@ namespace Elysium
 	public:
 		virtual ~Window();
 
-		virtual void OnUpdate();
+		virtual void Update();
 
 		virtual unsigned int GetWidth() const;
 		virtual unsigned int GetHeight() const;
 
 		virtual void SetVSync(bool enabled);
 		virtual bool IsVSync() const;
-
+		virtual SDL_Window* GetWindow() const { return m_Window; }
+		virtual SDL_GLContext* GetGLContext() const{ return m_Context;  }
 		static Window* CreateWindow(const WindowProps& props = WindowProps());
 	private:
 		Window(const WindowProps& props);
 		SDL_Window* m_Window = nullptr;
-		std::unique_ptr<GUI> m_GUI;
+		SDL_GLContext* m_Context = nullptr;
 	};
 }

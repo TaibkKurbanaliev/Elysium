@@ -15,6 +15,7 @@ namespace Elysium
 
 	private:
 		std::unique_ptr<Window> m_Window;
+		std::unique_ptr<GUI> m_GUI;
 	};
 
 	Application* CreateApplication();
