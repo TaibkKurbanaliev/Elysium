@@ -1,8 +1,8 @@
 #pragma once
 
 #include "SDL3/SDL.h"
-#include "Elysium/Core.h"
 #include "epch.h"
+#include "Elysium/Core.h"
 #include "Elysium/ImGui/GUI.h"
 
 namespace Elysium
@@ -36,11 +36,10 @@ namespace Elysium
 		virtual void SetVSync(bool enabled);
 		virtual bool IsVSync() const;
 		virtual SDL_Window* GetWindow() const { return m_Window; }
-		virtual SDL_GLContext* GetGLContext() const{ return m_Context;  }
-		static Window* CreateWindow(const WindowProps& props = WindowProps());
+		virtual SDL_GLContext GetGLContext() const{ return m_Context; }
+		Window(const WindowProps& props = WindowProps());
 	private:
-		Window(const WindowProps& props);
 		SDL_Window* m_Window = nullptr;
-		SDL_GLContext* m_Context = nullptr;
+		SDL_GLContext m_Context;
 	};
 }

@@ -1,3 +1,4 @@
+#include "glad/glad.h"
 #include "GUI.h"
 #include <imgui.h>
 #include "SDL3/SDL.h"
@@ -10,11 +11,13 @@
 
 namespace Elysium
 {
-	void GUI::InitGLGui(SDL_Window* window)
+	void GUI::InitGLGui(SDL_Window* window, SDL_GLContext context)
 	{
+		EL_CORE_INFO("Initialize GUI");
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
+		ImGuiIO io = ImGui::GetIO(); (void)io;
+		m_IO = &io;
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
@@ -39,9 +42,10 @@ namespace Elysium
 
 		ImGui::StyleColorsDark();
 
-		m_GLContext = SDL_GL_CreateContext(window);
-		ImGui_ImplSDL3_InitForOpenGL(window, m_GLContext);
+		ImGui_ImplSDL3_InitForOpenGL(window, context);
 		ImGui_ImplOpenGL3_Init(GLSL_VERSION);
+
+		EL_CORE_INFO("GUI was initialized");
 	}
 
 	void GUI::Update()
@@ -75,18 +79,32 @@ namespace Elysium
 		ImGui::NewFrame();
 #pragma endregion OPENGL
 	}
+
 	void GUI::End()
 	{
+		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 #pragma region OPENGL
 		ImGui::End();
 		ImGui::Render();
+		glViewport(0, 0, (int)m_IO->DisplaySize.x, (int)m_IO->DisplaySize.y);
+		glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
+		glClear(GL_COLOR_BUFFER_BIT);
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+		if (m_IO->ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+		{
+			SDL_Window* backup_current_window = SDL_GL_GetCurrentWindow();
+			SDL_GLContext backup_current_context = SDL_GL_GetCurrentContext();
+			ImGui::UpdatePlatformWindows();
+			ImGui::RenderPlatformWindowsDefault();
+			SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
+		}
 #pragma endregion OPENGL
 	}
 
 	GUI::~GUI()
 	{
-		SDL_GL_DestroyContext(m_GLContext);
+		m_IO = nullptr;
 	}
 }
 

@@ -7,3 +7,5 @@
 #include <functional>
 #include <string>
 #include <numeric>
+#include <cassert>
+#include "Elysium/Log.h"
