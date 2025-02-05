@@ -8,6 +8,7 @@
 #pragma endregion OPENGL
 
 #include "Platform/OpenGL/imgui_impl_sdl3.h"
+#include <imgui_internal.h>
 
 namespace Elysium
 {
@@ -16,7 +17,7 @@ namespace Elysium
 		EL_CORE_INFO("Initialize GUI");
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
-		ImGuiIO io = ImGui::GetIO(); (void)io;
+		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		m_IO = &io;
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;       // Enable Keyboard Controls
 		io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
@@ -45,28 +46,24 @@ namespace Elysium
 		ImGui_ImplSDL3_InitForOpenGL(window, context);
 		ImGui_ImplOpenGL3_Init(GLSL_VERSION);
 
+		
+
 		EL_CORE_INFO("GUI was initialized");
 	}
+
+	ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 	void GUI::Update()
 	{
 		Begin();
 		// Temp
-		ImGui::ShowDemoWindow();
-		static float f = 0.0f;
-		static int counter = 0;
-
-		ImGui::Begin("Hello, world!");
-
-		ImGui::Text("This is some useful text.");
-
-		ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-
-		if (ImGui::Button("Button"))
-			counter++;
-		ImGui::SameLine();
-		ImGui::Text("counter = %d", counter);
+		SetupDockingLayout();
 		// Temp
+
+		CreateInspector();
+		CreateSceneView();
+		Hierarchy();
+		CreateExplorer();
 
 		End();
 	}
@@ -82,9 +79,8 @@ namespace Elysium
 
 	void GUI::End()
 	{
-		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+		
 #pragma region OPENGL
-		ImGui::End();
 		ImGui::Render();
 		glViewport(0, 0, (int)m_IO->DisplaySize.x, (int)m_IO->DisplaySize.y);
 		glClearColor(clear_color.x * clear_color.w, clear_color.y * clear_color.w, clear_color.z * clear_color.w, clear_color.w);
@@ -100,6 +96,60 @@ namespace Elysium
 			SDL_GL_MakeCurrent(backup_current_window, backup_current_context);
 		}
 #pragma endregion OPENGL
+	}
+
+	void GUI::SetupDockingLayout()
+	{
+		ImGuiID dockspace_id = ImGui::GetMainViewport()->ID;
+		ImGui::DockSpaceOverViewport(dockspace_id, ImGui::GetMainViewport(), ImGuiDockNodeFlags_None);
+		static bool firstTime = true;
+
+		if (firstTime)
+		{
+			firstTime = !firstTime;
+			ImGui::DockBuilderRemoveNode(dockspace_id);
+			ImGui::DockBuilderAddNode(dockspace_id, ImGuiDockNodeFlags_DockSpace);
+			ImGui::DockBuilderSetNodeSize(dockspace_id, ImGui::GetMainViewport()->Size);
+
+			ImGuiID dock_main_id = dockspace_id;
+			ImGuiID dock_left_id = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Left, 0.2f, nullptr, &dock_main_id);
+			ImGuiID dock_right_id = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Right, 0.2f, nullptr, &dock_main_id);
+			ImGuiID dock_bottom_id = ImGui::DockBuilderSplitNode(dock_main_id, ImGuiDir_Down, 0.25f, nullptr, &dock_main_id);
+
+			ImGui::DockBuilderDockWindow("Scene View", dock_main_id);
+			ImGui::DockBuilderDockWindow("Inspector", dock_right_id);
+			ImGui::DockBuilderDockWindow("Explorer", dock_bottom_id);
+			ImGui::DockBuilderDockWindow("Hierarchy", dock_left_id);
+
+			ImGui::DockBuilderFinish(dockspace_id);
+		}
+	}
+
+	void GUI::CreateSceneView()
+	{
+		ImGui::Begin("Scene View");
+		ImGui::Text("This is the Scene View.");
+		ImGui::End();
+
+	}
+	void GUI::CreateInspector()
+	{
+		ImGui::Begin("Inspector");
+		ImGui::Text("This is the Inspector.");
+		ImGui::End();
+	}
+	void GUI::Hierarchy()
+	{
+		ImGui::Begin("Hierarchy");
+		ImGui::Text("This is the Hierarchy.");
+		ImGui::End();
+	}
+
+	void GUI::CreateExplorer()
+	{
+		ImGui::Begin("Explorer");
+		ImGui::Text("This is the Explorer.");
+		ImGui::End();
 	}
 
 	GUI::~GUI()

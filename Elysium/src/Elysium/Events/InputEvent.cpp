@@ -1,4 +1,5 @@
 #include "InputEvent.h"
+#include <Platform/OpenGL/imgui_impl_sdl3.h>
 
 namespace Elysium
 {
@@ -9,6 +10,7 @@ namespace Elysium
 	{
 		while (SDL_PollEvent(&s_Event))
 		{
+			ImGui_ImplSDL3_ProcessEvent(&s_Event);
 			switch (s_Event.type)
 			{
 			case SDL_EVENT_QUIT:
